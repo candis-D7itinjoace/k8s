@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: in-out-deployment
+  labels:
+    app: in-out-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: in-out-app
+  template:
+    metadata:
+      labels:
+        app: in-out-app
+    spec:
+      containers:
+      - name: in-out-app
+        image: ligmaboys/in-out-service
+        imagePullPolicy: Always
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 8085
+          
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: in-out-service
+spec:
+  selector:
+    app: in-out-app
+  type: ClusterIP
+  ports:
+  - port: 80
+    targetPort: 8085
+    protocol: TCP
+
