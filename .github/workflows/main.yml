@@ -34,7 +34,8 @@ jobs:
           # Paste output of `az ad sp create-for-rbac` as value of secret variable: AZURE_CREDENTIALS
           creds: ${{secrets.AZ_CREDS}}
       - run: |
-          az aks install-cli
+          az aks get-credentials --resource-group asserter-resource-group --name assert-please
+          echo "done"
           
           
 
