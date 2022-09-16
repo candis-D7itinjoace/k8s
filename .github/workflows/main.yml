@@ -29,7 +29,7 @@ jobs:
           docker pull ${{secrets.DOCKER_USER}}/eureka-server
       
       - name: Azure Login
-        uses: Azure/login@v1.4.6
-        with:
-          # Paste output of `az ad sp create-for-rbac` as value of secret variable: AZURE_CREDENTIALS
-          creds: ${{secrets.AZ_CREDS}}
+        
+        run: |
+          az login -u ${{secrets.AZ_USER}} -p ${{secrets.AZ_PASSWORD}}
+          echo "hello"
