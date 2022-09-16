@@ -28,16 +28,14 @@ jobs:
         run: |
           docker pull ${{secrets.DOCKER_USER}}/eureka-server
       
-      - name: login to azure account
-
-        run: |
-          az login -u ${{secrets.AZ_USER}} -p ${{secrets.AZ_PASSWORD}}
-
-      - name: connect to kubernetes cluster using kubectl
-        
-        run: |
+      - name: Azure Login
+        uses: Azure/login@v1.4.6
+        with:
+          # Paste output of `az ad sp create-for-rbac` as value of secret variable: AZURE_CREDENTIALS
+          creds: ${{secrets.AZ_CREDS}}
+      - run: |
           az aks install-cli
-          az aks get credentials --resource-group asserter-resource-group --name assert-please
-        
-           
-      
+          
+          
+
+
