@@ -35,5 +35,6 @@ jobs:
       - name: run test command
         
         run: |
-          az aks create --resource-group asserter-resource-group --name assert-please --node-count 1 --generate-ssh-keys
+          az aks get-credentials --resource-group asserter-resource-grou --name assert-please
+          echo "hello"
           
