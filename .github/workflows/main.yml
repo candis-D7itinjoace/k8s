@@ -29,7 +29,11 @@ jobs:
           docker pull ${{secrets.DOCKER_USER}}/eureka-server
       
       - name: Azure Login
+        uses: Azure/login@v1.4.6
+        with: 
+          creds: ${{secrets.AKS_CREDS}}
+      - name: run test command
         
         run: |
-          az login -u ${{secrets.AZ_USER}} -p ${{secrets.AZ_PASSWORD}}
           echo "hello"
+          
