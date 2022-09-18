@@ -41,9 +41,10 @@ jobs:
         uses: Azure/setup-kubectl@v3
       
       - name: Deploy to Kubernetes cluster
-        
-        run: |
-          kubectl apply -f ./service-registry.yml
+        uses: Azure/k8s-deploy@v4
+        with:
+          manifests: './service-registry.yml'
+          images: 'https://hub.docker.com/repository/docker/ligmaboys/eureka-server'
 
 
 
