@@ -40,7 +40,7 @@ jobs:
       #    manifests: './service-registry.yml'
        #   images: 'https://hub.docker.com/repository/docker/ligmaboys/eureka-server'
 
-      - run: ls
+      - run: git --version
 
 
 
