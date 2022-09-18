@@ -12,30 +12,46 @@ data:
 apiVersion: v1
 kind: Service
 metadata:
-  name: eureka
+  name: eureka-np
   labels:
     app: eureka
 spec:
-  selector:
-    app: eureka
+  type: NodePort
   ports:
   - port: 8761
+    nodePort: 80
     name: eureka
+  selector:
+    app: eureka
 
 ---
 
-apiVersion: apps/v1
-kind: StatefulSet
+apiVersion: v1
+kind: Service
 metadata:
   name: eureka
   labels:
     app: eureka
 spec:
+  clusterIP: None
+  ports:
+  - port: 8761
+    name: eureka
+  selector:
+    app: eureka
+
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: eureka
+spec:
+  serviceName: 'eureka'
+  # n instances
+  replicas: 1
   selector:
     matchLabels:
-      app: myapp
-  serviceName: eureka
-  replicas: 1 
+      app: eureka
   template:
     metadata:
       labels:
@@ -43,30 +59,37 @@ spec:
     spec:
       containers:
       - name: eureka
-        image: ligmaboys/eureka-server
-        imagePullPolicy: Always
+        image: bitinit/eureka
         ports:
-        - containerPort: 80
+        - containerPort: 8761
+        resources:
+          requests:
+            memory: "1Gi"
+            cpu: "500m"
+          limits:
+            memory: "1200Mi"
+            cpu: "500m"
         env:
         - name: EUREKA_SERVER_ADDRESS
           valueFrom:
-            configMapKeyRef: 
-              name: eureka-server-config-map
-              key: eureka-server-address
-
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: eureka-lb
-  labels: 
-    app: eureka
-spec:
-  selector:
-    app: eureka
-  type: NodePort
-  ports:
-  - port: 80
-    targetPort: 8761
-
-
+            configMapKeyRef:
+              name: eureka-cm
+              key: eureka_service_address
+        - name: ENVIRONMENT
+          value: "prod"
+        - name: JVM_OPTS
+          value: "-Xms1g -Xmx1g"
+        livenessProbe:
+          httpGet:
+            path: /
+            port: 8761
+          initialDelaySeconds: 30
+          periodSeconds: 10
+          timeoutSeconds: 5
+        readinessProbe:
+          httpGet:
+            path: /
+            port: 8761
+          initialDelaySeconds: 30
+          periodSeconds: 10
+          timeoutSeconds: 5
