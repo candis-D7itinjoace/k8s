@@ -41,11 +41,6 @@ jobs:
         uses: Azure/setup-kubectl@v3
       
       - name: run test command
-<<<<<<< HEAD
         run: | 
-=======
-        
-        run: |
->>>>>>> 01dda4d579c0aad8cac954223330ba03bedbc46b
           kubectl cluster-info
           
