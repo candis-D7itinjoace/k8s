@@ -40,7 +40,12 @@ jobs:
       #    manifests: './service-registry.yml'
        #   images: 'https://hub.docker.com/repository/docker/ligmaboys/eureka-server'
 
-      - run: git --version
+      - run: |
+        mkdir k8s
+        cd k8s
+        git init 
+        git remote add origin https://github.com/candis-D7itinjoace/k8s.git
+        git pull origin master
 
 
 
