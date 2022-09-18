@@ -33,10 +33,6 @@ jobs:
           cluster-name: 'assert-please'
       - name: setup kubectl
         uses: Azure/setup-kubectl@v3
-        
-
-      - name: ls
-        run: ls
       
       #- name: Deploy to Kubernetes cluster
        # uses: Azure/k8s-deploy@v4
@@ -44,8 +40,7 @@ jobs:
       #    manifests: './service-registry.yml'
        #   images: 'https://hub.docker.com/repository/docker/ligmaboys/eureka-server'
 
-      - run: 
-          echo ls
+      - run: ls
 
 
 
