@@ -42,5 +42,5 @@ jobs:
       
       - name: run test command
         run: | 
-          kubectl cluster-info
+          pwd
           
