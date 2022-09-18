@@ -40,7 +40,10 @@ jobs:
       - name: setup kubectl
         uses: Azure/setup-kubectl@v3
       
-      - name: run test command
-        run: | 
-          pwd
+      - name: Deploy to Kubernetes cluster
+        uses: Azure/k8s-deploy@v4
+        with:
+          manifests: |
+            service-registry.yml
+          images: 'https://hub.docker.com/repository/docker/ligmaboys/eureka-server'
           
