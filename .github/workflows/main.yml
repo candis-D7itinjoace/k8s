@@ -32,9 +32,15 @@ jobs:
         uses: Azure/login@v1.4.6
         with: 
           creds: ${{secrets.AKS_CREDS}}
+      - name: Deploy to Kubernetes cluster
+        uses: azure/aks-set-context@v3
+        with:
+          resource-group: 'asserter-resource-group'
+          cluster-name: 'assert-please'
+      - name: setup kubectl
+        uses: Azure/setup-kubectl@v3
+      
       - name: run test command
-        
-        run: |
-          az aks get-credentials --resource-group asserter-resource-grou --name assert-please
-          echo "hello"
+        run: | 
+          kubectl cluster-info
           
