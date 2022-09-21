@@ -19,7 +19,7 @@ spec:
   type: NodePort
   ports:
   - port: 8761
-    nodePort: 80
+    nodePort: 30000
     name: eureka
   selector:
     app: eureka
