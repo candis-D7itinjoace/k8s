@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: domain-header-app
-        image: asserterproject.azurecr.io/domain-header-asserter
+        image: ligmaboys/domain-header-asserter
         imagePullPolicy: Always
         resources:
           limits:
