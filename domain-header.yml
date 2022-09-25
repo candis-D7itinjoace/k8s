@@ -16,11 +16,11 @@ spec:
     spec:
       containers:
       - name: domain-header-app
-        image: ligmaboys/domain-header-asserter
+        image: asserterproject.azurecr.io/domain-header-asserter
         imagePullPolicy: Always
         resources:
           limits:
-            memory: "128Mi"
+            memory: "256Mi"
             cpu: "500m"
         ports:
         - containerPort: 8081
