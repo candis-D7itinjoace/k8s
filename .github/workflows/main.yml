@@ -39,7 +39,7 @@ jobs:
         with:
           manifests: './domain-header.yml'
           images: 'asserterproject.azurecr.io/domain-header-asserter'
-          pull: false
+
       
       - name: announce the ened
         run: echo 'the end'
