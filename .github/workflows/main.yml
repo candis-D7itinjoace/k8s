@@ -34,16 +34,15 @@ jobs:
       - name: setup kubectl
         uses: Azure/setup-kubectl@v3
       
-      #- name: Deploy to Kubernetes cluster
-       # uses: Azure/k8s-deploy@v4
-      #  with:
-      #    manifests: './service-registry.yml'
-       #   images: 'https://hub.docker.com/repository/docker/ligmaboys/eureka-server'
-
-      - name: git checkout again
-        uses: actions/checkout@v2.4.2
-      - run: 
-          kubectl apply -f service-registry.yml
+      - name: Deploy to Kubernetes cluster
+        uses: Azure/k8s-deploy@v4
+        with:
+          manifests: './domain-header.yml'
+          images: 'asserterproject.azurecr.io/domain-header-asserter'
+          pull: false
+      
+      - name: announce the ened
+        run: echo 'the end'
 
 
 
