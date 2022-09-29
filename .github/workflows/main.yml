@@ -38,11 +38,11 @@ jobs:
       - name: setup kubectl
         uses: Azure/setup-kubectl@v3
       
-      - name: Deploy to Kubernetes cluster
+      - name: Deploy mysql to kube AKS
         uses: Azure/k8s-deploy@v4
         with:
-          manifests: './domain-header.yml'
-      - name: announce the ened
+          manifests: './database.yml'
+      - name: announce the end
         run: echo 'the end'
 
 
