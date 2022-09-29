@@ -60,10 +60,10 @@ spec:
           - name: MYSQL_ROOT_PASSWORD
             value: root
           - name: MYSQL_DATABASE
-            value: fleetdb
+            value: appdatabase
         resources:
           limits:
-            memory: "128Mi"
+            memory: "256Mi"
             cpu: "500m"
         ports:
         - containerPort: 3307
@@ -71,3 +71,7 @@ spec:
         volumeMounts:
           - mountPath: /var/lib/mysql
             name: mysql-persistence-storage
+      volumes:
+        - name: mysql-persistence-storage
+          persistentVolumeClaim:
+              claimName: mysql-pv-claim
