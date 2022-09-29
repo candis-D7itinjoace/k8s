@@ -42,9 +42,6 @@ jobs:
         uses: Azure/k8s-deploy@v4
         with:
           manifests: './domain-header.yml'
-          images: 'asserterproject.azurecr.io/domain-header-asserter'
-
-      
       - name: announce the ened
         run: echo 'the end'
 
