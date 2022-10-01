@@ -18,6 +18,15 @@ spec:
       - name: domain-header-app
         image: ligmaboys/domain-header-asserter
         imagePullPolicy: Always
+        env:
+          - name: DB_HOST
+            value: mysql
+          - name: DB_NAME
+            value: appdatabase
+          - name: DB_USER
+            value: root
+          - name: DB_PASSWORD
+            value: root
         resources:
           limits:
             memory: "256Mi"
