@@ -39,11 +39,9 @@ jobs:
       - name: Deploy mysql to kube AKS
         uses: Azure/k8s-deploy@v4
         with:
-          manifests: './database.yml'
-      - name: deploy domain-header-app to AKS
-        uses: Azure/k8s-deploy@v4
-        with:
-          manifests: './domain-header.yml'
+          manifests: | 
+            './database.yml'
+            'domain-header.yml'
       
       - name: announce the end
 
