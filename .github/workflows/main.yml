@@ -26,7 +26,7 @@ jobs:
       - name: Azure Login
         uses: Azure/login@v1.4.6
         with: 
-          creds: ${{secrets.AKs_CREDS}}
+          creds: ${{secrets.AKS_CREDS}}
       - name: AKS set context
         uses: azure/aks-set-context@v3
         with:
