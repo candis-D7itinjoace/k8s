@@ -28,7 +28,7 @@ jobs:
         uses: Azure/setup-kubectl@v3
         
       - name: AKS set context
-        uses: azure/k8s-set-context@v3
+        uses: azure/aks-set-context@v3
         with:
           resource-group: 'asserter-resource-group'
           cluster-name: 'assert-please'
