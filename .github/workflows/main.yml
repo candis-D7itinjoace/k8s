@@ -27,14 +27,15 @@ jobs:
         uses: Azure/login@v1.4.6
         with: 
           creds: ${{secrets.AKS_CREDS}}
+
+      - name: setup kubectll
+        uses: Azure/setup-kubectl@v3
+        
       - name: AKS set context
         uses: azure/aks-set-context@v3
         with:
           resource-group: 'asserter-resource-group'
           cluster-name: 'assert-please'
-
-      - name: setup kubectll
-        uses: Azure/setup-kubectl@v3
       
       - name: Deploy mysql to kube AKS
         run: |
