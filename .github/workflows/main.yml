@@ -36,12 +36,6 @@ jobs:
       - name: Setup kubectl
         uses: azure/setup-kubectl@v3
 
-      - name: Deploy to AKS mysql
-        uses: Azure/k8s-deploy@v4
-        with:
-          namespace: 'default'
-          manifests: |
-             database.yml
         
       - name: Deploy to AKS
         uses: Azure/k8s-deploy@v4
