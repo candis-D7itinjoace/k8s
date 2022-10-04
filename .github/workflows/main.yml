@@ -33,7 +33,7 @@ jobs:
           resource-group: 'asserter-resource-group'
           cluster-name: 'assert-please'
 
-      - name: setup kubectl
+      - name: setup kubectll
         uses: Azure/setup-kubectl@v3
       
       - name: Deploy mysql to kube AKS
