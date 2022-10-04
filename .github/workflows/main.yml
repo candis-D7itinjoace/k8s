@@ -37,15 +37,9 @@ jobs:
         uses: Azure/setup-kubectl@v3
       
       - name: Deploy mysql to kube AKS
-        uses: Azure/k8s-deploy@v4
-        with:
-          manifests: | 
-            database.yml
-            domain-header.yml
-      
-      - name: announce the end
-
-        run: echo "hello end" 
+        run: |
+          kubectl apply -f ./database.yml 
+          kubectl apply -f ./domain-header.yml
         
 
 
