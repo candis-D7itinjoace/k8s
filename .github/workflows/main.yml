@@ -18,29 +18,39 @@ jobs:
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       - uses: actions/checkout@v3
-      - name: login to docker
-        
-        run: |
-          docker login -u ${{secrets.DOCKER_USER}} -p ${{secrets.DOCKER_PASSWORD}}
       
       - name: Azure Login
         uses: Azure/login@v1.4.6
         with: 
-          creds: ${{secrets.AKS_CREDS}}
+          creds: ${{secrets.AK_CREDS}}
 
       - name: setup kubectll
         uses: Azure/setup-kubectl@v3
         
       - name: AKS set context
-        uses: azure/aks-set-context@v3
+        uses: azure/k8s-set-context@v3
         with:
           resource-group: 'asserter-resource-group'
           cluster-name: 'assert-please'
       
-      - name: Deploy mysql to kube AKS
-        run: |
-          kubectl apply -f ./database.yml 
-          kubectl apply -f ./domain-header.yml
+      - name: Setup kubectl
+        uses: azure/setup-kubectl@v3
+
+      - name: Deploy to AKS mysql
+        uses: Azure/k8s-deploy@v4
+        with:
+          namespace: 'default'
+          manifests: |
+             database.yml
+          images: mysql
+        
+      - name: Deploy to AKS
+        uses: Azure/k8s-deploy@v4
+        with:
+          namespace: 'default'
+          manifests: |
+             domain-header.yml
+          images: 'asserter4project.azurecr.io/domain-header:3b5810ed952e887372d8edcdd21c8ddd88ca6d39'
         
 
 
