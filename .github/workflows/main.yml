@@ -34,7 +34,7 @@ jobs:
           # AKS Cluster Subscription
           subscription: 233ad1a2-f75f-46d3-97ac-79a1b4c99d50
           # Get cluster admin credentials. Values: true or false
-          admin: true
+          admin: false
       
       - name: Setup kubectl
         uses: azure/setup-kubectl@v3
