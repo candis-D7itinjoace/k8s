@@ -24,11 +24,17 @@ jobs:
         with: 
           creds: ${{secrets.AK_CREDS}}
 
-      - name: set context for AKS
-        uses: Azure/k8s-set-context@v3.0
+      - name: Azure Kubernetes set context
+        uses: Azure/aks-set-context@v3.1
         with:
-          method: kubeconfig
-          kubeconfig: kubeconfig
+          # Resource Group Name
+          resource-group: asserter-resource-group
+          # AKS Cluster Name
+          cluster-name: assert-please
+          # AKS Cluster Subscription
+          subscription: 233ad1a2-f75f-46d3-97ac-79a1b4c99d50
+          # Get cluster admin credentials. Values: true or false
+          admin: true
       
       - name: Setup kubectl
         uses: azure/setup-kubectl@v3
