@@ -40,8 +40,11 @@ jobs:
         uses: azure/setup-kubectl@v3
 
         
-      - name: Deploy to AKS
-        run: |
-          kubectl apply -f ./database.yml
-
+      - name: Deploy to Kubernetes cluster
+        uses: Azure/k8s-deploy@v4.4
+        with:
+          
+          manifests: ./database.yml
+          
+          resource-group: asserter-resource-group
           
