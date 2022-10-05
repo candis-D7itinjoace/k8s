@@ -15,8 +15,8 @@ spec:
         app: domain-header-app
     spec:
       containers:
-      - name: domain-header-app
-        image: asserter4project.azurecr.io/domain-header:3b5810ed952e887372d8edcdd21c8ddd88ca6d39
+      - name: domain-header
+        image: ligmaboys/domain-header-asserter
         imagePullPolicy: Always
         env:
           - name: DB_HOST

@@ -23,13 +23,11 @@ jobs:
         uses: Azure/login@v1.4.6
         with: 
           creds: ${{secrets.AK_CREDS}}
-
-      - name: setup kubectll
-        uses: Azure/setup-kubectl@v3
         
       - name: AKS set context
-        uses: azure/aks-set-context@v3
+        uses: azure/k8s-set-context@v3
         with:
+          method: service-principal
           resource-group: 'asserter-resource-group'
           cluster-name: 'assert-please'
       
@@ -42,8 +40,7 @@ jobs:
         with:
           namespace: 'default'
           manifests: |
-             domain-header.yml
-        
+            database.yml        
 
 
           
