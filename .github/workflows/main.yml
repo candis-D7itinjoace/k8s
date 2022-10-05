@@ -23,14 +23,15 @@ jobs:
         uses: Azure/login@v1.4.6
         with: 
           creds: ${{secrets.AK_CREDS}}
+
+      - name: set context for AKS
+        uses: Azure/k8s-set-context@v3.0
+        with:
+          method: kubeconfig
+          kubeconfig: kubeconfig
       
       - name: Setup kubectl
         uses: azure/setup-kubectl@v3
-
-      - name: set aks context manually
-        run: |
-          az account set --subscription 233ad1a2-f75f-46d3-97ac-79a1b4c99d50
-          az aks get-credentials --resource-group asserter-resource-group --name assert-please
 
         
       - name: Deploy to AKS
