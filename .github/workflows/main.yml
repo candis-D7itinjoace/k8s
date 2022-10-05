@@ -27,6 +27,7 @@ jobs:
       - name: AKS set context
         uses: azure/k8s-set-context@v3
         with:
+          cluster-type: arc
           method: service-principal
           resource-group: 'asserter-resource-group'
           cluster-name: 'assert-please'
