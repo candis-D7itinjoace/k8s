@@ -40,5 +40,11 @@ jobs:
         uses: azure/setup-kubectl@v3
 
         
-      - name: pwd 
-        run: pwd
+      - name: Deploy to Kubernetes cluster
+        uses: Azure/k8s-deploy@v4.4
+        with:
+          
+          manifests: /home/runner/work/k8s/k8s/database.yml
+          
+          resource-group: asserter-resource-group
+          
